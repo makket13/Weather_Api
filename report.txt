@@ -1,0 +1,55 @@
+Project Report: Weather Forecast API
+
+
+Overview
+This project involved creating a Python application that interacts with the Meteomatics API to retrieve weather forecast data for multiple locations, storing the data in an SQLite database, and then serving the data through a Flask-based API. The application allows users to fetch the latest weather information, calculate average temperatures, and retrieve the top locations based on specific weather metrics (e.g., temperature, wind speed, precipitation).
+
+Process
+1. Data Fetching
+The first step was to use the Meteomatics API to fetch weather data for 3 specific locations (Berlin, London, and New York). A Python script (weather_fetcher.py) was developed to retrieve the temperature, precipitation, and wind speed for each location and store it in a relational SQLite database (weather.db). The API provides the flexibility to specify the time frame and weather parameters required.
+
+2. Database Creation
+An SQLite database was chosen for simplicity and ease of integration with Python. The script creates a table forecast with columns for location, date, temperature, precipitation, and wind speed. The fetched data is inserted into this table after being processed.
+
+3. API Implementation
+A Flask-based API was created (app.py) to expose the stored weather data through several endpoints:
+
+/locations: Lists the latest weather forecast for each location.
+/average_temp: Calculates and lists the average temperature for the last 3 forecasts.
+/top_locations: Retrieves the top n locations based on a selected weather metric.
+
+4. Endpoints Testing
+The API was tested with various requests to ensure correct functionality. The testing covered retrieving location data, calculating averages, and returning the top locations based on weather metrics.
+
+Key Decisions
+
+SQLite Database: We chose SQLite for this project due to its simplicity and lightweight nature. It was sufficient for storing the weather data for a few locations and made it easy to integrate with Python.
+
+Flask for API: Flask was selected as the web framework due to its ease of use and popularity for building lightweight APIs. It allowed us to quickly develop the necessary endpoints to serve the weather data.
+
+Weather Metrics: The decision was made to retrieve three key weather parameters: temperature, precipitation, and wind speed, as these are commonly used for weather forecasting and analysis.
+
+
+Challenges Encountered
+
+API Authentication: Initially, there were issues with authenticating against the Meteomatics API. This was resolved by ensuring the correct credentials were provided and testing multiple queries with sample data.
+
+Data Formatting: Formatting the data retrieved from the API into a structure suitable for storage and API responses required careful parsing, especially for handling multiple locations and metrics.
+
+SQL Schema Changes: Midway through the project, we added additional columns to the database for precipitation and wind speed, which required adjustments to both the database schema and the API logic.
+
+
+Tools and Techniques Used
+
+Python: For data fetching, processing, and API creation.
+
+Flask: For building the REST API.
+
+SQLite: As the relational database to store weather data.
+
+Meteomatics API: The external API used to retrieve weather forecasts.
+
+Postman/Curl: For testing API endpoints.
+
+Conclusion
+The project successfully implemented a complete weather data retrieval system with an API to serve the data. The system can fetch data from the Meteomatics API, store it locally, and expose it via a simple REST API. The project can be expanded by adding more locations or weather parameters, and it provides a solid foundation for more complex weather data analysis and reporting systems.
